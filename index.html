@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D492 CompTIA Data+ (DA0-002) | Who Wants to Be a Millionaire Review</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP STUDIO HUD BAR
+       ======================================================================== -->
+  <header class="top-hud">
+    <div class="brand-cluster">
+      <div class="studio-crest">D+</div>
+      <div class="brand-titles">
+        <h1>D492 CompTIA Data+ (DA0-002)</h1>
+        <span>Self-Paced Review Cohort • Part 3 of 3</span>
+      </div>
+    </div>
+
+    <div class="hud-controls">
+      <!-- Second Chance Shield Status (Super & Blitz Modes) -->
+      <div id="hud-shield" class="shield-indicator" style="display: none;">
+        <span>🛡️</span>
+        <span id="hud-shield-text">Second Chance Shield: ACTIVE</span>
+      </div>
+
+      <!-- Minimal Timer Toggle + '?' Hover Tooltip -->
+      <div class="timer-control-group">
+        <label id="timer-toggle-label" class="timer-switch-label" for="timer-toggle-input">
+          <input type="checkbox" id="timer-toggle-input" class="timer-switch-input" checked />
+          <span>Timer</span>
+        </label>
+        <div class="tooltip-trigger" tabindex="0" aria-label="Timer Rules Information">
+          ?
+          <div id="timer-tooltip-box" class="tooltip-box">
+            Timer Rules: Tier 1 = 30s | Tier 2 = 45s | Tier 3 = 60s. Classic 15-Q Mode is strictly timed.
+          </div>
+        </div>
+      </div>
+
+      <!-- Sound FX Toggle -->
+      <button type="button" id="mute-btn" class="hud-btn">🔊 Sound: ON</button>
+
+      <!-- Walk Away Button (Active during Classic & Super Runs) -->
+      <button type="button" id="walk-away-btn" class="hud-btn walk-away-btn" style="display: none;">
+        💼 Walk Away
+      </button>
+
+      <!-- Return to Mode Lobby -->
+      <button type="button" id="return-lobby-btn" class="hud-btn" style="display: none;">
+        ⬅ Lobby
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       VIEW 1: WELCOME & MODE SELECTION LOBBY
+       ======================================================================== -->
+  <main id="lobby-view" class="view-section active">
+    <div class="lobby-hero">
+      <div class="lobby-crest-large">D492</div>
+      <h2>Who Wants to Be a Data+ Millionaire?</h2>
+      <p>
+        Master all 54 CompTIA Data+ (DA0-002) exam scenarios across all five certification domains
+        using your 50:50, Socratic Virtual Coach, and Ask the Audience lifelines.
+      </p>
+    </div>
+
+    <!-- Student Name Entry for Cohort Completion Report -->
+    <div class="student-entry-bar">
+      <label for="student-name-input">Your First &amp; Last Name (For Cohort Completion Report)</label>
+      <input
+        type="text"
+        id="student-name-input"
+        placeholder="e.g., Alex Morgan"
+        autocomplete="name"
+      />
+    </div>
+
+    <!-- 3 Mode Cards -->
+    <div class="mode-cards-grid">
+      <!-- CARD 1: Classic 15-Question Millionaire Run -->
+      <article class="mode-card">
+        <div>
+          <span class="mode-badge tv-badge">Strict TV Show Rules • Timed Only</span>
+          <h3>Classic 15-Question Millionaire Run</h3>
+          <p>
+            Experience the authentic high-stakes TV game show format! Climb the 15-tier ladder from
+            $100 to $1,000,000 with a locked countdown timer (30s/45s/60s).
+          </p>
+          <ul class="mode-specs">
+            <li>15 stratified questions across all 5 DA0-002 domains</li>
+            <li>Safe Havens at Q5 ($1,000) and Q10 ($32,000)</li>
+            <li>Strictly Timed (30s / 45s / 60s) &amp; No Second Chance Shield</li>
+            <li>One wrong answer ends the run!</li>
+          </ul>
+        </div>
+        <button type="button" id="start-classic-btn" class="start-mode-btn">
+          Play Classic 15-Q Run →
+        </button>
+      </article>
+
+      <!-- CARD 2: The 54-Question Super Millionaire Run -->
+      <article class="mode-card featured-cohort">
+        <div>
+          <span class="mode-badge cohort-badge">★ Official Cohort Completion Mode</span>
+          <h3>The 54-Question Super Millionaire Run</h3>
+          <p>
+            Complete all 54 shuffled CompTIA Data+ review scenarios up to the $5,000,000 Super Jackpot
+            to unlock your official Course Instructor Cohort Part 3 Completion Email.
+          </p>
+          <ul class="mode-specs">
+            <li>All 54 questions shuffled across all 5 exam domains</li>
+            <li>Safe Havens every 10 questions (Q10, Q20, Q30, Q40, Q50, Q54)</li>
+            <li>Rechargeable Second Chance Shield + 3 Bonus Lifeline Drops</li>
+            <li>Unlocks official Outlook Completion Email at the end of the run</li>
+          </ul>
+        </div>
+        <button type="button" id="start-super-btn" class="start-mode-btn">
+          Start 54-Q Super Millionaire Run →
+        </button>
+      </article>
+
+      <!-- CARD 3: Domain Blitz (Targeted Practice) -->
+      <article class="mode-card">
+        <div>
+          <span class="mode-badge practice-badge">Practice Mode • Non-Cohort Credit</span>
+          <h3>Domain Blitz (Targeted Practice)</h3>
+          <p>
+            Focus your preparation on a single CompTIA Data+ domain to reinforce specific concepts,
+            formulas, and exam clues at your own pace.
+          </p>
+          <label for="blitz-domain-select" style="font-size:0.78rem; color:var(--gold-bright); font-weight:700; display:block; margin-bottom:0.35rem;">
+            Select Target Domain:
+          </label>
+          <select id="blitz-domain-select" class="domain-select-dropdown"></select>
+        </div>
+        <button type="button" id="start-blitz-btn" class="start-mode-btn">
+          Launch Domain Blitz →
+        </button>
+      </article>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       VIEW 2: MAIN MILLIONAIRE STUDIO STAGE
+       ======================================================================== -->
+  <section id="stage-view" class="view-section">
+    <div class="studio-grid">
+      <!-- Left/Center Stage: Lifelines, Question Lozenge, 2x2 Answer Grid, Rationale -->
+      <div class="stage-main">
+        <div class="stage-top-bar">
+          <div class="question-meta-pills">
+            <span id="q-counter-pill" class="q-counter-pill">Question 1 of 54</span>
+            <span id="q-prize-pill" class="q-prize-pill">For $500</span>
+            <span id="bonus-drop-pill" class="bonus-drop-pill" style="display: none;">
+              🎁 Bonus Lifeline Drop Question!
+            </span>
+          </div>
+
+          <!-- Show Countdown Clock -->
+          <div id="clock-ring" class="clock-ring">
+            <span>⏱</span>
+            <span id="clock-text">30s</span>
+          </div>
+        </div>
+
+        <!-- Lifeline Dock -->
+        <div class="lifeline-dock">
+          <button type="button" id="ll-5050" class="lifeline-btn" title="Eliminate two incorrect answers">
+            <span>50:50</span>
+            <span id="badge-5050" class="lifeline-count-badge">1</span>
+          </button>
+          <button type="button" id="ll-coach" class="lifeline-btn" title="Get a Socratic guiding clue from your Data+ Virtual Coach">
+            <span>📞 Phone a Coach</span>
+            <span id="badge-coach" class="lifeline-count-badge">1</span>
+          </button>
+          <button type="button" id="ll-audience" class="lifeline-btn" title="Poll the studio audience (Warning: Audience is 80% reliable!)">
+            <span>📊 Ask the Audience</span>
+            <span id="badge-audience" class="lifeline-count-badge">1</span>
+          </button>
+        </div>
+
+        <!-- Phone a Coach Socratic Overlay Drawer -->
+        <div id="coach-drawer" class="lifeline-overlay-drawer">
+          <div class="lifeline-drawer-header">
+            <span>📞 Data+ Virtual Coach (Socratic Clue)</span>
+          </div>
+          <p id="coach-message" class="coach-message"></p>
+        </div>
+
+        <!-- Ask the Audience Poll Overlay Drawer -->
+        <div id="audience-drawer" class="lifeline-overlay-drawer">
+          <div class="lifeline-drawer-header">
+            <span>📊 Studio Audience Poll Results</span>
+            <span style="font-size:0.72rem; color:var(--text-muted); text-transform:none;">
+              (Remember: The audience majority can occasionally fall for exam traps!)
+            </span>
+          </div>
+          <div id="audience-bars-container" class="audience-bars-grid"></div>
+        </div>
+
+        <!-- Question Lozenge -->
+        <div class="question-lozenge">
+          <p id="question-text">Loading scenario question...</p>
+        </div>
+
+        <!-- 2x2 Single-Click Answer Lozenges -->
+        <div class="answers-grid">
+          <button type="button" id="ans-btn-A" class="answer-btn">
+            <span class="answer-diamond">♦</span>
+            <span class="answer-letter">A:</span>
+            <span id="ans-text-A"></span>
+          </button>
+          <button type="button" id="ans-btn-B" class="answer-btn">
+            <span class="answer-diamond">♦</span>
+            <span class="answer-letter">B:</span>
+            <span id="ans-text-B"></span>
+          </button>
+          <button type="button" id="ans-btn-C" class="answer-btn">
+            <span class="answer-diamond">♦</span>
+            <span class="answer-letter">C:</span>
+            <span id="ans-text-C"></span>
+          </button>
+          <button type="button" id="ans-btn-D" class="answer-btn">
+            <span class="answer-diamond">♦</span>
+            <span class="answer-letter">D:</span>
+            <span id="ans-text-D"></span>
+          </button>
+        </div>
+
+        <!-- Post-Answer Rationale & Expandable Deep-Dive Accordion -->
+        <div id="rationale-drawer" class="rationale-drawer">
+          <div class="rationale-header">
+            <span id="rationale-status" class="rationale-status"></span>
+            <span id="revealed-domain-tag" class="revealed-domain-tag"></span>
+          </div>
+          <p id="rationale-body" class="rationale-body"></p>
+
+          <!-- Expandable Deep Dive / Exam Clue Accordion -->
+          <div class="deep-dive-accordion">
+            <button type="button" id="deep-dive-toggle" class="deep-dive-toggle">
+              <span id="deep-dive-title-span">Deep Dive &amp; Exam Clue</span>
+              <span id="deep-dive-icon" style="font-size:1.1rem; font-weight:900;">+</span>
+            </button>
+            <div id="deep-dive-content" class="deep-dive-content"></div>
+          </div>
+
+          <button type="button" id="next-q-btn" class="next-q-btn">
+            Continue to Next Question →
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Sidebar: Prize Meter (15-Tier Classic or Design A 54-Q Window) -->
+      <aside class="ladder-sidebar">
+        <div id="ladder-title" class="ladder-title">Super Millionaire Meter</div>
+        <div id="milestone-tracker" class="milestone-tracker"></div>
+        <ul id="ladder-list" class="ladder-list"></ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       VIEW 3: FINAL DIAGNOSTIC REPORT & OUTLOOK COMPLETION TRIGGER
+       ======================================================================== -->
+  <section id="results-view" class="view-section">
+    <div class="results-card">
+      <div class="results-banner">
+        <h2 id="res-headline">Run Complete!</h2>
+        <p id="res-subheadline" style="color:var(--text-muted); font-size:0.95rem;"></p>
+        <div id="res-final-prize" class="final-prize-display">$0</div>
+      </div>
+
+      <!-- Summary KPIs -->
+      <div class="kpi-summary-row">
+        <div class="kpi-box">
+          <span>Mode Played</span>
+          <strong id="res-mode-name" style="font-size:0.95rem;">Super Millionaire</strong>
+        </div>
+        <div class="kpi-box">
+          <span>First-Try Accuracy</span>
+          <strong id="res-accuracy">0%</strong>
+        </div>
+        <div class="kpi-box">
+          <span>Questions Correct</span>
+          <strong id="res-score-fraction">0 / 54</strong>
+        </div>
+        <div class="kpi-box">
+          <span>Time Elapsed</span>
+          <strong id="res-time-elapsed">0m 0s</strong>
+        </div>
+      </div>
+
+      <!-- Course Instructor Outlook Completion Email Trigger -->
+      <div id="outlook-completion-box" class="outlook-completion-box"></div>
+
+      <!-- 5-Domain Performance Breakdown -->
+      <div class="domain-breakdown-section">
+        <h3>CompTIA Data+ (DA0-002) Domain Mastery Breakdown</h3>
+        <div id="domain-bars-container"></div>
+      </div>
+
+      <!-- Missed Questions Review List -->
+      <div class="domain-breakdown-section">
+        <h3>Questions to Review Before Your Exam</h3>
+        <div id="missed-questions-list"></div>
+      </div>
+
+      <button type="button" id="play-again-btn" class="next-q-btn">
+        🔄 Return to Studio Lobby &amp; Play Another Mode
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       DECENTRALIZED SCRIPTS (Load Data First, Engine Last)
+       ======================================================================== -->
+  <script src="data/config.js"></script>
+  <script src="data/questions.js"></script>
+  <script src="data/supplemental.js"></script>
+  <script src="js/engine.js"></script>
+</body>
+</html>
